@@ -49,7 +49,7 @@ namespace BeerBot
 
         static async void Bot_OnMessage(object sender, MessageEventArgs e)
         {
-            Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}.");
+            Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}. Text: {e.Message.Text}");
             if (e.Message.Text == "/beer")
             {
                 await botClient.SendTextMessageAsync(
