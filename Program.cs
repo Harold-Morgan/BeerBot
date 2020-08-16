@@ -25,10 +25,7 @@ namespace BeerBot
                 items = JsonConvert.DeserializeObject<DirtyLittleSecretsMap>(json);
             }
 
-            HttpToSocks5Proxy proxy = new HttpToSocks5Proxy(items.Proxy2.Address, items.Proxy2.Port);
-            //HttpToSocks5Proxy proxy2 = new HttpToSocks5Proxy(items.Proxy.Address, items.Proxy.Port, items.Proxy.Login, items.Proxy.Password);
-
-            botClient = new TelegramBotClient(items.BotToken, proxy);
+            botClient = new TelegramBotClient(items.BotToken);
 
             var me = botClient.GetMeAsync().Result;
             Console.WriteLine(
@@ -39,11 +36,6 @@ namespace BeerBot
             botClient.OnUpdate += Bot_OnUpdate;
             botClient.OnMessage += Bot_OnMessage;
             botClient.StartReceiving();
-            //while (true)
-            //{
-            //    var message = Console.ReadLine();
-
-            //}
             Thread.Sleep(int.MaxValue);
         }
 
